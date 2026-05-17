@@ -1,237 +1,490 @@
-
-# Recon Sentinel  
+# ⚡ RECONE-MASTER  
 ### Automated Reconnaissance & Vulnerability Scanner
 
-Recon Sentinel is a lightweight, CLI-based automated reconnaissance and vulnerability scanning tool designed for web security assessments. It helps security researchers and students perform real-world attack surface discovery, web crawling, and vulnerability scanning in an organized and modular way.
+RECONE-MASTER is a modular, CLI-based cybersecurity tool that automates the full reconnaissance → crawling → vulnerability scanning → reporting workflow against authorized web targets.
 
-This project was developed as part of a cybersecurity project assignment to simulate a practical reconnaissance and vulnerability assessment workflow using Python, Nikto, and Nuclei.
+The tool is designed for penetration testing practice, attack surface discovery, vulnerability assessment, and educational cybersecurity projects.
 
+---
 
+# ⚠️ Legal Notice
 
-## Features
+This tool is created strictly for educational and authorized security testing purposes only.
 
-### Reconnaissance
+Use RECONE-MASTER only on:
 
-- Accepts Domain / Subdomain / URL / IP Address
-- Subdomain Discovery
+- Systems you own
+- Local lab environments
+- Authorized bug bounty targets
+- Targets with explicit written permission
+
+Unauthorized scanning is illegal in many jurisdictions.
+
+The developer is not responsible for misuse of this project.
+
+---
+
+# 📸 Screenshots
+
+## Main Interface
+
+![Main Interface](screenshots/main.png)
+
+## HTML Report
+
+![HTML Report](screenshots/report.png)
+
+---
+
+# 🚀 Features
+
+| Module | Capabilities |
+|--------|--------------|
+| Recon | DNS Enumeration, Subdomain Discovery, WHOIS Lookup, HTTP Header Analysis, Technology Fingerprinting, Port Scanning |
+| Crawler | Recursive Crawling, JS Extraction, Parameter Discovery, Form Enumeration |
+| Vulnerability Scanner | Custom Checks + Nikto Integration + Nuclei Integration |
+| Reporter | TXT Report, JSON Report, HTML Report (Optional) |
+
+---
+
+# 🔍 Reconnaissance Features
+
+- Subdomain Enumeration
 - Open Port Scanning
-- Service Detection
-- HTTP Header Collection
+- Banner Grabbing
 - DNS Information Gathering
+- WHOIS Lookup
+- HTTP Header Collection
+- Web Technology Detection
+- Target Fingerprinting
+- JavaScript File Discovery
+- Endpoint Collection
+- URL Extraction
+
+---
+
+# 🕷️ Crawling Features
+
+- Recursive BFS Crawling
+- Link Extraction
+- Form Detection
+- Parameter Collection
+- JavaScript Analysis
+- Interesting Path Discovery
+- Sensitive File Detection
+- Secret Pattern Detection
+
+---
+
+# 🛡️ Vulnerability Scanning Features
+
+## Custom Vulnerability Checks
+
+- Security Header Analysis
+- Missing CSP Detection
+- Missing HSTS Detection
+- Missing X-Frame-Options
+- CORS Misconfiguration
+- Clickjacking Detection
+- Cookie Security Analysis
+- Information Disclosure
+- Dangerous HTTP Methods
+- SSL/TLS Enforcement Check
+- Directory Listing Detection
+- Default Credential Detection
+- Open Redirect Detection
+- SQL Injection Testing
+- Reflected XSS Detection
+- XXE Detection
+- SSRF Detection
+- Local File Inclusion Detection
+
+---
+
+# ⚡ External Tool Integrations
+
+## Nikto Integration
+
+RECONE-MASTER integrates with:
+
+- Nikto Web Scanner
+- Web Server Misconfiguration Detection
+- Sensitive File Detection
+- Outdated Server Detection
+
+Example:
+
+```bash
+nikto -h example.com
+```
+
+---
+
+## Nuclei Integration
+
+RECONE-MASTER integrates with:
+
+- Nuclei Templates
+- CVE Detection
+- Exposure Detection
+- Misconfiguration Detection
 - Technology Detection
-- JavaScript File Extraction
-- Interesting Endpoint Discovery
-- Parameter and Form Detection
-- URL Crawling and Collection
+
+Example:
+
+```bash
+nuclei -u https://example.com
+```
 
 ---
 
-### Vulnerability Scanning
+# 🎁 Bonus Features
 
-- Nikto Integration
-- Nuclei Integration
-- Common Web Vulnerability Detection
-- Security Misconfiguration Detection
-- Sensitive File Discovery
-- Missing Security Header Detection
-- Risk Severity Classification
-
----
-
-### Reporting
-
-- Structured CLI Output
-- Final TXT Report Generation
-- Organized Vulnerability Findings
-- Severity-based Risk Summary
-- Timestamped Scan Reports
+✅ Recursive Crawling  
+✅ Multi-threading Support  
+✅ Smart Result Deduplication  
+✅ HTML Report Generation  
+✅ JSON Export  
+✅ Docker Support  
+✅ AI-assisted Executive Summary  
+✅ Stealth / Rate Limiting  
+✅ Modular Architecture  
 
 ---
 
-## Project Structure
+# 📦 Installation
 
-```text
-recon_scanner/
-│
-├── main.py
-├── requirements.txt
-├── README.md
-│
-├── modules/
-│   ├── subdomain.py
-│   ├── portscan.py
-│   ├── crawler.py
-│   ├── jsfinder.py
-│   ├── techdetect.py
-│   ├── nikto_scan.py
-│   ├── nuclei_scan.py
-│   └── report.py
-│
-├── reports/
-│   └── report.txt
-│
-└── screenshots/
-````
-
----
-
-## Installation
+# Option 1 — Local Installation (Python 3.10+)
 
 ## Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/recon-sentinel.git
-cd recon-sentinel
+git clone https://github.com/YOUR_USERNAME/RECONE-MASTER.git
+
+cd RECONE-MASTER
 ```
 
 ---
 
-## Install Python Dependencies
+## Create Virtual Environment (Recommended)
+
+### Linux / macOS
 
 ```bash
-pip install requests beautifulsoup4 colorama python-whois builtwith
+python3 -m venv venv
+
+source venv/bin/activate
+```
+
+### Windows
+
+```bash
+python -m venv venv
+
+venv\Scripts\activate
 ```
 
 ---
 
-## Install Nikto
+## Install Dependencies
 
-### Kali Linux / Ubuntu
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+# 📥 Install Nikto
+
+## Kali Linux / Ubuntu
 
 ```bash
 sudo apt update
+
 sudo apt install nikto
 ```
 
 ---
 
-## Install Nuclei
+# 📥 Install Nuclei
+
+## Ubuntu / Kali
 
 ```bash
 sudo apt install nuclei
 ```
 
----
-
-## Usage
-
-Run the tool using:
+Update Templates:
 
 ```bash
-python main.py
+nuclei -update-templates
 ```
 
-Then enter your target:
+---
 
-```text
-testphp.vulnweb.com
-```
+# ⚙️ Usage
 
-Example:
+## Basic Usage
 
 ```bash
-Enter Target: testphp.vulnweb.com
+python main.py -t example.com
 ```
 
 ---
 
-## Sample Output
+# 📌 Required Argument
+
+| Argument | Description |
+|----------|-------------|
+| -t, --target | Domain, URL, Subdomain, or IP Address |
+
+---
+
+# ⚙️ Scan Options
+
+| Argument | Default | Description |
+|----------|---------|-------------|
+| --ports | Common Web Ports | Custom Ports / Range |
+| --threads | 10 | Number of Threads |
+| --depth | 2 | Crawling Depth |
+| --timeout | 10 | Request Timeout |
+| --rate-limit | 0.1 | Delay Between Requests |
+| --user-agent | RECONE-MASTER | Custom User-Agent |
+
+---
+
+# 🧩 Module Toggles
+
+| Argument | Description |
+|----------|-------------|
+| --skip-recon | Skip Recon Phase |
+| --skip-crawl | Skip Crawling |
+| --skip-vuln | Skip Vulnerability Scanning |
+| --skip-nikto | Skip Nikto |
+| --skip-nuclei | Skip Nuclei |
+
+---
+
+# 📤 Output Options
+
+| Argument | Description |
+|----------|-------------|
+| --output-dir | Custom Report Directory |
+| --html | Generate HTML Report |
+| --json | Generate JSON Report |
+| --ai-summary | AI Executive Summary |
+| --quiet | Quiet Mode |
+| --no-color | Disable ANSI Colors |
+
+---
+
+# 💻 Examples
+
+## Basic Scan
+
+```bash
+python main.py -t example.com
+```
+
+---
+
+## Full Scan with HTML Report
+
+```bash
+python main.py -t example.com --html
+```
+
+---
+
+## Aggressive Scan
+
+```bash
+python main.py -t 192.168.1.1 --ports 1-65535 --depth 4 --threads 20
+```
+
+---
+
+## Stealth Mode
+
+```bash
+python main.py -t example.com --rate-limit 1.0 --threads 3
+```
+
+---
+
+## Custom Checks Only
+
+```bash
+python main.py -t example.com --skip-nikto --skip-nuclei
+```
+
+---
+
+# 🏗️ Project Architecture
 
 ```text
-[+] Finding Subdomains...
-www.testphp.vulnweb.com
-mail.testphp.vulnweb.com
-
-[+] Scanning Open Ports...
-Port 80 is OPEN
-Port 443 is OPEN
-
-[+] Running Nikto Scan...
-[+] Running Nuclei Scan...
-
-[+] Report Saved: reports/report.txt
+RECONE-MASTER/
+├── main.py
+├── requirements.txt
+├── README.md
+├── Dockerfile
+├── docker-compose.yml
+│
+├── modules/
+│   ├── recon.py
+│   ├── crawler.py
+│   ├── vuln_scanner.py
+│   ├── nikto_scan.py
+│   ├── nuclei_scan.py
+│   └── report_generator.py
+│
+├── utils/
+│   ├── console.py
+│   ├── validator.py
+│   └── http_client.py
+│
+├── reports/
+│   └── sample_report.json
+│
+└── screenshots/
 ```
 
 ---
 
-## Sample Report Includes
+# 📄 Report Format
 
-* Target Information
-* Reconnaissance Findings
-* Open Ports
-* Technologies Used
-* HTTP Headers
-* DNS Information
-* URLs and Endpoints
-* JavaScript Files
-* Parameters and Forms
-* Nikto Findings
-* Nuclei Findings
-* Severity Summary
-* Final Risk Level
+## JSON Report
 
----
+Generated File:
 
-## Bonus Features
+```text
+report_<target>_<timestamp>.json
+```
 
-* Modular Architecture
-* Clean CLI Interface
-* Error Handling
-* Smart Report Generation
-* Easily Expandable Modules
+### Structure
 
-Future Improvements:
-
-* Recursive Crawling
-* Multi-threading
-* HTML Report Generation
-* GUI Dashboard
-* Docker Support
-* AI-based Report Summarization
+```json
+{
+  "meta": {},
+  "recon": {},
+  "crawl": {},
+  "vulns": {}
+}
+```
 
 ---
 
-## Authorized Testing Only
+# 🌙 HTML Report
 
-⚠ IMPORTANT:
+Professional dark-mode HTML report including:
 
-This tool must only be used on:
-
-* Your Own Systems
-* Local Test Labs
-* Authorized VMs
-* Approved Bug Bounty Targets
-
-Unauthorized scanning is strictly prohibited.
-
-Always follow ethical hacking practices and legal guidelines.
+- Severity Statistics
+- Vulnerability Tables
+- Open Ports
+- DNS Information
+- Technology Badges
+- JS Files
+- Parameters
+- Findings Summary
 
 ---
 
-## Evaluation Criteria Covered
+# 🤖 AI Executive Summary
 
-* Functionality
-* Recon Automation
-* Real-World Practicality
-* Code Quality
-* Reporting & Documentation
+RECONE-MASTER supports AI-generated executive summaries.
 
-This project is designed to maximize assignment marks.
+Requires:
 
----
+```bash
+export ANTHROPIC_API_KEY=YOUR_API_KEY
+```
 
-## Author
+The AI summary provides:
 
-Name: Your Name
-Department: Computer Science & Engineering
-Course: Cyber Security / Penetration Testing
-Project Title: Automated Reconnaissance & Vulnerability Scanner
+- Risk Assessment
+- Top Vulnerabilities
+- Business Impact
+- Recommended Fixes
 
 ---
 
-## License
+# 🐳 Docker Support
 
-This project is developed for educational and academic purposes only.
+## Build Docker Image
 
-Use responsibly.
+```bash
+docker build -t recone-master .
+```
 
+---
+
+## Run Container
+
+```bash
+docker run recone-master
+```
+
+---
+
+# ✅ Tested Environments
+
+- Python 3.10
+- Python 3.11
+- Ubuntu 22.04
+- Kali Linux
+- Windows 11 (WSL)
+- Docker
+
+---
+
+# 📚 Educational Purpose
+
+This project was developed for:
+
+- Cybersecurity Learning
+- Penetration Testing Practice
+- Web Security Assessment
+- Academic Project Submission
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome.
+
+## Steps
+
+1. Fork Repository
+2. Create Feature Branch
+3. Add Improvements
+4. Submit Pull Request
+
+---
+
+# 📜 License
+
+MIT License © 2026 RECONE-MASTER
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files to use, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software.
+
+The Software is provided "AS IS", without warranty of any kind.
+
+---
+
+# 👨‍💻 Author
+
+Name: Your Name  
+Project: RECONE-MASTER  
+Course: Cyber Security / Penetration Testing  
+Department: Computer Science & Engineering  
+
+---
+
+# ⭐ Support
+
+If you like this project:
+
+⭐ Star the repository  
+🍴 Fork the project  
+🐛 Report issues  
+📢 Share with others  
